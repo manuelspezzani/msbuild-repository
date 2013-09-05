@@ -1,6 +1,6 @@
 <Project DefaultTargets="Main" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
-	<UsingTask TaskName="FetchTestClasses" AssemblyFile="C:\Users\Manuel\Documents\Visual Studio 2012\Projects\TaskDiProva\TaskDiProva\bin\Debug\TaskDiProva.dll" />
-	<UsingTask TaskName="FetchTestMethods" AssemblyFile="C:\Users\Manuel\Documents\Visual Studio 2012\Projects\TaskDiProva\TaskDiProva\bin\Debug\TaskDiProva.dll" />
+	<UsingTask TaskName="FetchTestClasses" AssemblyFile=".\TaskDiProva\bin\Debug\TaskDiProva.dll" />
+	<UsingTask TaskName="FetchTestMethods" AssemblyFile=".\TaskDiProva\bin\Debug\TaskDiProva.dll" />
 
 	<ItemGroup>
 		<TestAssemblies Include="C:\Users\Manuel\Documents\Visual Studio 2012\Projects\TaskDiProva\**\bin\Debug\*Tests.dll"/>
