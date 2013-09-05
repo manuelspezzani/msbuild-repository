@@ -1,0 +1,35 @@
+<Project DefaultTargets="Main" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+	<UsingTask TaskName="FetchTestClasses" AssemblyFile="C:\Users\Manuel\Documents\Visual Studio 2012\Projects\TaskDiProva\TaskDiProva\bin\Debug\TaskDiProva.dll" />
+	<UsingTask TaskName="FetchTestMethods" AssemblyFile="C:\Users\Manuel\Documents\Visual Studio 2012\Projects\TaskDiProva\TaskDiProva\bin\Debug\TaskDiProva.dll" />
+
+	<ItemGroup>
+		<TestAssemblies Include="C:\Users\Manuel\Documents\Visual Studio 2012\Projects\TaskDiProva\**\bin\Debug\*Tests.dll"/>
+	</ItemGroup>
+
+	<Target Name="Main">	
+		<MSBuild Projects="$(MSBuildProjectFile)" 
+				 Targets="FetchTestsAndExecute" 
+				 Properties="CurrentAssembly=%(TestAssemblies.FullPath)" />
+	</Target>
+
+	<Target Name="FetchTestsAndExecute">		
+		<FetchTestClasses AssemblyFile="$(CurrentAssembly)">			
+			<Output TaskParameter="TestClasses" ItemName="TestClasses" />			
+		</FetchTestClasses>
+
+		<MSBuild Projects="$(MSBuildProjectFile)" 
+				 Targets="FetchAndExecuteTests" 
+				 Properties="CurrentAssembly=$(CurrentAssembly);CurrentClass=%(TestClasses.Identity)" />
+	</Target>
+
+	<Target Name="FetchAndExecuteTests">
+		<Message Text="$(CurrentClass)" />
+
+		<FetchTestMethods TypeFullName="$(CurrentClass)" AssemblyFile="$(CurrentAssembly)" >
+			<Output TaskParameter="TestMethods" ItemName="TestMethods" />
+		</FetchTestMethods>
+
+		<Message Text=">>> Executing %(TestMethods.Identity)" />
+	</Target>
+
+</Project>
