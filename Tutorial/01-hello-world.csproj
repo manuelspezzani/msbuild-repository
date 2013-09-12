@@ -1,0 +1,11 @@
+<!-- Cosa ci aspettiamo che faccia questo script? :) -->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+
+	<Target Name="PrintHelloWorld">
+		<Message Text="Hello world" />
+	</Target>
+
+	<!-- E se creiamo un altro target simile? -->
+
+</Project>
